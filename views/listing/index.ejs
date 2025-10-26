@@ -1,0 +1,137 @@
+<% layout("/layouts/boilerplate.ejs") %>
+<style>
+  #filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .filter {
+    text-align: center;
+    margin-top: 1rem;
+    margin-right: 2rem;
+    opacity: 0.7;
+  }
+  .filter:hover {
+    opacity: 1;
+    cursor: pointer;
+  }
+  .filter p {
+    font-size: 0.8rem;
+  }
+  .tax{
+    display: none;
+  }
+  .filter-button {
+    background: #717171;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    display: inline-block;
+    transition: all 0.2s ease;
+    border: none;
+    cursor: pointer;
+    margin-right: 1rem;
+    margin-top: 1rem;
+  }
+  .filter-button:hover {
+    background: #5a5a5a;
+    color: white;
+    transform: scale(1.02);
+  }
+  .filter-button:active {
+    transform: scale(0.98);
+  }
+  .filter-button{
+    margin-bottom: 0.4rem;
+    margin-left: 0.5rem;
+  }
+</style>
+<body>
+  <div id="filters">
+    <div class="filter">
+      <div><i class="fa-solid fa-fire"></i></div>
+      <p>Trending</p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-bed"></i></div>
+      <p>Rooms</p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-city"></i></div>
+      <p>Iconic Cities</p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-mountain"></i></div>
+      <p>Mountains</p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-mountain-city"></i></div>
+      <p>Castles</p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-person-swimming"></i></div>
+      <p>Amazing Pools</p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-campground"></i></div>
+      <p>Camping</p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-tractor"></i></div>
+      <p>Farms</p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-snowflake"></i></div>
+      <p>Arctic</p>
+    </div>
+    
+    <button class="filter-button">
+      <i class="fa-solid fa-sliders"></i> Filters
+    </button>
+    
+    <button class="filter-button" id="taxToggleButton">
+      Display total after Taxes
+    </button>
+  </div>
+  
+  <div class="row row-cols-lg-4 row-cols-md-2 row-cols-1 g-4">
+    <% for (let list of allListings) { %>
+    <a class="img-achor" href="/listings/<%= list._id%>">
+      <div class="col">
+        <div class="card h-100">
+          <img
+            src="<%= list.image.url %>"
+            class="card-img-top"
+            alt="<%= list.title %>"
+            style="height: 20rem"
+          />
+          <div class="card-img-overlay"></div>
+          <div class="card-body">
+            <p class="card-text">
+              <b><%= list.title %></b> <br />
+              &#8377;<%= list.price.toLocaleString("en-IN") %>
+              <i class="tax"> &nbsp; +18% GST</i>
+            </p>
+          </div>
+        </div>
+      </div>
+    </a>
+    <% } %>
+  </div>
+  <script>
+    let taxToggleButton = document.getElementById("taxToggleButton");
+    taxToggleButton.addEventListener("click", ()=>{
+      let taxInfo = document.getElementsByClassName("tax");
+      for(info of taxInfo){
+        if(info.style.display != "inline"){
+          info.style.display = "inline"; 
+        }else{
+          info.style.display = "none";
+        }
+      }
+    });
+  </script>
+</body>
