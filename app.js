@@ -29,7 +29,7 @@ const dbUrl = process.env.ATLAS_DB_URL;
 const store = MongoStore.create({
     mongoUrl : dbUrl,
     crypto : {
-        secret : process.env.secret,
+        secret : process.env.SECRET,
     },
     touchAfter : 24 * 3600,
 });
@@ -40,7 +40,7 @@ store.on("error", ()=>{
 
 const sessionOptions = {
     store,
-    secret : process.env.secret,
+    secret : process.env.SECRET,
     resave : false,
     saveUninitialized : true,
     cookie : {
@@ -58,6 +58,7 @@ const sessionOptions = {
 app.use(session(sessionOptions));
 
 app.use(flash());
+app.use(cookieParser());
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -73,9 +74,6 @@ app.use((req, res, next)=>{
     res.locals.curUser = req.user;
     next();
 });
-
-//cookie parser
-app.use(cookieParser());
 
 app.engine('ejs',ejsMate);
 
