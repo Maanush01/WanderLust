@@ -74,6 +74,7 @@ app.use((req, res, next)=>{
     next();
 });
 
+//cookie parser
 app.use(cookieParser());
 
 app.engine('ejs',ejsMate);
