@@ -84,7 +84,6 @@ app.use(methodOverride("_method"));
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"views"));
 
-
 main()
 .then(() => console.log('Connected to MongoDB'))
 .catch(err => console.log(err));
@@ -125,7 +124,6 @@ app.use("/",userRouter);
 //     res.send(regUser);
 // });
 
-
 //error handler for all the routes except the defined ones
 app.all(/.*/,(req, res, next)=>{
     next(new ExpressError(404, "Page Not Found!"));
@@ -145,3 +143,5 @@ app.use((err, req, res, next)=>{
 app.listen(port, () => {
   console.log(`app is listening at http://localhost:${port}`);
 });
+
+// I am manush!!
