@@ -1,6 +1,6 @@
 {
   "engines": {
-    "node": "22.18.0"
+    "node": "24.20.0"
   },
   "name": "wanderlustproject",
   "version": "1.0.0",

@@ -24,7 +24,11 @@ const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 
-const dbUrl = process.env.ATLAS_DB_URL;
+const dbUrl = process.env.ATLASDB_URL;
+
+if (!dbUrl || !process.env.SECRET) {
+    throw new Error("ATLASDB_URL and SECRET must be set in .env");
+}
 
 const store = MongoStore.create({
     mongoUrl : dbUrl,
@@ -34,7 +38,7 @@ const store = MongoStore.create({
     touchAfter : 24 * 3600,
 });
 
-store.on("error", ()=>{
+store.on("error", (err)=>{
     console.log("Error in the Mongo Session Store", err);
 });
 
