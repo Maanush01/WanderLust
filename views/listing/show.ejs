@@ -18,7 +18,7 @@
             <ul class="list-group list-group-flush text-start mb-4">
               <li class="list-group-item">
                 <strong>Owned By:</strong
-                ><i> <%= listDetails.owner.username %></i>
+                ><i> <%= listDetails.owner ? listDetails.owner.username : "WanderLust" %></i>
               </li>
               <li class="list-group-item">
                 <strong>Description:</strong> <%= listDetails.description %>
@@ -34,7 +34,7 @@
                 <strong>Country:</strong> <%= listDetails.country %>
               </li>
             </ul>
-            <% if(curUser && curUser._id.equals(listDetails.owner._id)){ %>
+            <% if(curUser && listDetails.owner && curUser._id.equals(listDetails.owner._id)){ %>
             <div class="d-flex justify-content-between">
               <form
                 action="/listings/<%= listDetails._id %>/edit"

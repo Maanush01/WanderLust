@@ -1,10 +1,19 @@
 const Listing = require("../models/listing");
 const NodeGeocoder = require('node-geocoder');
 
+// Nominatim (OpenStreetMap's free geocoder) requires a real, identifying
+// User-Agent — requests with a generic/default one are silently rejected
+// (empty results, no error), which is why geocoding can quietly fail.
 const options = {
     provider: 'openstreetmap',
     httpAdapter: 'https',
-    formatter: null
+    formatter: null,
+    fetch: function customFetch(url, opts) {
+        return fetch(url, {
+            ...opts,
+            headers: { ...(opts && opts.headers), 'user-agent': 'WanderLustApp/1.0' },
+        });
+    },
 };
 
 const geocoder = NodeGeocoder(options);

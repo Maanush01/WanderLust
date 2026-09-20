@@ -1,0 +1,48 @@
+<div id="chat-widget" class="chat-widget">
+  <button id="chat-toggle" class="chat-toggle" aria-label="Open stay finder chat" aria-expanded="false">
+    <svg class="chat-toggle__icon-open" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="4" y="3" width="2" height="4" fill="currentColor" stroke="none" />
+      <rect x="5" y="7" width="14" height="13" rx="4" />
+      <circle cx="9.5" cy="13" r="1.4" fill="currentColor" stroke="none" />
+      <circle cx="14.5" cy="13" r="1.4" fill="currentColor" stroke="none" />
+      <path d="M9 17h6" />
+      <path d="M2 12h3" />
+      <path d="M19 12h3" />
+    </svg>
+    <svg class="chat-toggle__icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="18" y1="6" x2="6" y2="18" />
+      <line x1="6" y1="6" x2="18" y2="18" />
+    </svg>
+  </button>
+
+  <div id="chat-panel" class="chat-panel" hidden>
+    <div class="chat-panel__header">
+      <div>
+        <p class="chat-panel__title">Stay Finder</p>
+        <p class="chat-panel__subtitle">Tell me what you're looking for</p>
+      </div>
+    </div>
+
+    <div id="chat-messages" class="chat-panel__messages">
+      <div class="chat-msg chat-msg--bot">
+        <p>Hi! Tell me what kind of stay you're after — a place, a budget, a vibe — and I'll point you to a few good matches from WanderLust.</p>
+      </div>
+    </div>
+
+    <form id="chat-form" class="chat-panel__form">
+      <input
+        id="chat-input"
+        type="text"
+        placeholder="e.g. beachfront place under ₹6000"
+        autocomplete="off"
+        maxlength="500"
+      />
+      <button type="submit" class="chat-panel__send" aria-label="Send message">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="22" y1="2" x2="11" y2="13" />
+          <polygon points="22 2 15 22 11 13 2 9 22 2" />
+        </svg>
+      </button>
+    </form>
+  </div>
+</div>
